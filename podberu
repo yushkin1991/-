@@ -1,0 +1,799 @@
+<!-- 🔧 ВСТАВКА В ТИЛЬДУ: Добавьте блок T123 (Другие → T123 HTML) и вставьте этот код целиком. -->
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://formspree.io" />
+<link rel="preconnect" href="https://mc.yandex.ru" />
+<style>
+  :root {
+    --bg: #0b0f1e;
+    --fg: #f0f3f9;
+    --muted: #9ea6b6;
+    --primary: #6ee7ff;
+    --accent: #a78bfa;
+    --ok: #22c55e;
+    --danger: #ef4444;
+    --r: 22px;
+    --shadow: 0 16px 60px rgba(0, 0, 0, 0.45);
+  }
+  .n-one {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 40px;
+    color: var(--fg);
+    background: var(--bg);
+    background-image: radial-gradient(
+        circle at 80% 20%,
+        rgba(34, 211, 238, 0.15),
+        transparent 70%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(167, 139, 250, 0.12),
+        transparent 70%
+      );
+  }
+
+  /* Карточка-герой */
+  .n-hero {
+    width: min(1200px, 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.02)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: calc(var(--r)+6px);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+  .n-hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 60% 40%,
+        rgba(110, 231, 255, 0.12),
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 30% 80%,
+        rgba(167, 139, 250, 0.12),
+        transparent 60%
+      );
+  }
+
+  /* Левый столбец */
+  .n-left {
+    padding: 56px 56px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    z-index: 1;
+  }
+  .n-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 14px;
+    border-radius: 999px;
+    width: max-content;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .n-badge svg {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+  }
+  .n-h1 {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 46px);
+    line-height: 1.1;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .n-sub {
+    color: var(--muted);
+    font-size: clamp(15px, 1.4vw, 19px);
+    max-width: 520px;
+  }
+  .n-bullets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .n-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: var(--fg);
+    backdrop-filter: blur(3px);
+  }
+  .n-chip svg {
+    width: 16px;
+    height: 16px;
+    color: var(--ok);
+  }
+
+  /* Видео и оффер-баннер */
+  .n-media {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-top: 6px;
+  }
+  .n-media video {
+    width: 180px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  }
+  .n-offer {
+    display: grid;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+  }
+  .n-offer__row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .n-offer__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  .n-offer__timer {
+    font-variant-numeric: tabular-nums;
+    color: #e6ebff;
+  }
+
+  /* CTA */
+  .n-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-wa {
+    background: #25d366;
+    color: #0b1020;
+  }
+  .btn-tg {
+    background: #2aabee;
+    color: #fff;
+  }
+  .btn-call {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .n-trust {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .n-dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+  }
+
+  /* Правый столбец — форма */
+  .n-right {
+    padding: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+  }
+  .card h3 {
+    margin: 0 0 8px;
+    font-size: 24px;
+  }
+  .card p {
+    margin: 0 0 16px;
+    color: #c9cfdb;
+    font-size: 15px;
+  }
+  form {
+    display: grid;
+    gap: 12px;
+  }
+  .f-field {
+    position: relative;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 14px 14px 14px 46px;
+    border-radius: 12px;
+    background: rgba(9, 14, 30, 0.6);
+    color: var(--fg);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font: inherit;
+    outline: none;
+    resize: none;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #9aa2b4;
+  }
+  select {
+    color: #e2e8f0;
+  }
+  .f-field svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--primary);
+  }
+  .policy {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .policy a {
+    color: var(--primary);
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: #0b1020;
+    width: 100%;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  .f-hint {
+    font-size: 12px;
+    color: #cdd3e3;
+  }
+  .f-trust {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 10px;
+    justify-content: flex-start;
+    color: #d7dcef;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+
+  /* Моб. фикс-кнопка */
+  .sticky-cta {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 50;
+    display: none;
+  }
+  .sticky-cta .btn {
+    width: 100%;
+    font-weight: 800;
+  }
+
+  /* Модал успешной отправки */
+  .modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 60;
+  }
+  .modal__card {
+    background: #111628;
+    color: var(--fg);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    width: min(420px, 90%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+  }
+  .modal__card h4 {
+    margin: 0 0 8px;
+  }
+  .modal__card p {
+    margin: 0 0 14px;
+    color: #cfd6e8;
+  }
+
+  @media (max-width: 980px) {
+    .n-hero {
+      grid-template-columns: 1fr;
+    }
+    .n-left {
+      padding: 32px 22px 16px;
+    }
+    .n-right {
+      padding: 22px;
+    }
+    .sticky-cta {
+      display: block;
+    }
+    .n-media {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .n-media video {
+      width: 100%;
+      height: 160px;
+    }
+  }
+</style>
+
+<div class="n-one">
+  <div class="n-hero">
+    <div class="n-hero__glow"></div>
+
+    <!-- ЛЕВО: контент -->
+    <section class="n-left">
+      <span class="n-badge">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 11l9-9 9 9" />
+          <path d="M9 21V9h6v12" />
+        </svg>
+        Новостройки без комиссии
+      </span>
+      <h1 class="n-h1">
+        Подберу квартиру в новостройке — без комиссии и переплаты
+      </h1>
+      <p class="n-sub">
+        Помогаю купить по цене застройщика, но с вашей выгодой. Найду 3–5 лучших
+        вариантов и свяжусь в течение 15 минут.
+      </p>
+
+      <div class="n-bullets">
+        <div class="n-chip">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" /></svg
+          >0% комиссия — цена от застройщика
+        </div>
+        <div class="n-chip">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" /></svg
+          >130+ ЖК в базе
+        </div>
+        <div class="n-chip">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" /></svg
+          >Одобрение ипотеки, 30+ банков-партнёров
+        </div>
+        <div class="n-chip">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" /></svg
+          >Юридическая проверка сделки
+        </div>
+      </div>
+
+      <div class="n-media">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop"
+        >
+          <source
+            src="https://cdn.coverr.co/videos/coverr-city-sunset-6158/1080p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div class="n-offer">
+          <div class="n-offer__row">
+            <span class="n-offer__dot"></span
+            ><strong
+              >Только до <span id="offer-date"></span> — ипотека от 0,1%</strong
+            >
+          </div>
+          <div class="n-offer__row">
+            Осталось:
+            <span class="n-offer__timer" id="offer-timer">--:--:--</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="n-cta">
+        <a class="btn btn-wa" href="https://wa.me/79510001991" target="_blank"
+          >WhatsApp</a
+        >
+        <a class="btn btn-tg" href="https://t.me/yourusername" target="_blank"
+          >Telegram</a
+        >
+        <a class="btn btn-call" href="tel:+79510001991">Позвонить</a>
+      </div>
+      <div class="n-trust">
+        <span>5+ лет</span><span class="n-dot"></span><span>300+ сделок</span
+        ><span class="n-dot"></span><span>Всегда на стороне покупателя</span>
+      </div>
+    </section>
+
+    <!-- ПРАВО: форма -->
+    <aside class="n-right" id="lead">
+      <div class="card">
+        <h3>Получить 5 лучших вариантов</h3>
+        <p>
+          Заполните короткую форму — подберу актуальные предложения под ваш
+          бюджет и свяжусь в течение 15 минут.
+        </p>
+        <form id="leadFormNov" action="#" method="POST">
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" /></svg
+            ><input type="text" name="name" placeholder="Ваше имя" required />
+          </div>
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.45-1.19a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"
+              /></svg
+            ><input type="tel" name="phone" placeholder="Телефон" required />
+          </div>
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 3h-1a2 2 0 0 0-2 2v2H6V5a2 2 0 0 0-2-2H3" /></svg
+            ><select name="type" required>
+              <option value="" disabled selected>Тип квартиры</option>
+              <option>Студия</option>
+              <option>1-комнатная</option>
+              <option>2-комнатная</option>
+              <option>3+ комнат</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10H7" />
+              <path d="M21 6H3" />
+              <path d="M21 14H3" />
+              <path d="M21 18H7" /></svg
+            ><input type="text" name="district" placeholder="Район / ЖК" />
+          </div>
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" /></svg
+            ><select name="timeline" required>
+              <option value="" disabled selected>Срок покупки</option>
+              <option>В ближайший месяц</option>
+              <option>1–3 месяца</option>
+              <option>3–6 месяцев</option>
+              <option>Позже</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H5l-4 4V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"
+              /></svg
+            ><textarea
+              name="comment"
+              rows="3"
+              placeholder="Пожелания (планировка, этаж, бюджет)"
+            ></textarea>
+          </div>
+          <label class="policy"
+            ><input type="checkbox" required /><span
+              >Согласен(на) с <a href="#">политикой конфиденциальности</a></span
+            ></label
+          >
+          <div class="f-hint">Я перезвоню в течение 15 минут</div>
+          <button type="submit" class="btn btn-primary">
+            Получить 5 вариантов за 15 минут
+          </button>
+          <div class="f-trust">
+            <span>🔒 Данные защищены</span>
+            <span>✅ Без комиссии</span>
+            <span>🏦 30+ банков</span>
+            <span>👨‍💼 Консультация бесплатно</span>
+          </div>
+        </form>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Модал успешной отправки -->
+<div class="modal" id="modalDone">
+  <div class="modal__card">
+    <h4>Заявка отправлена ✅</h4>
+    <p>
+      Спасибо! Я свяжусь с вами в течение 15 минут. А пока Вы можете
+      ознакомиться со всеми ЖК.
+    </p>
+    <div style="display: flex; gap: 8px; justify-content: center">
+      <a
+        class="btn btn-wa"
+        href="https://avtopilot.allrealty.pro/"
+        target="_blank"
+        >Посмотреть все ЖК</a
+      ><button
+        class="btn btn-call"
+        onclick="document.getElementById('modalDone').style.display='none'"
+      >
+        Закрыть
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === Настройки ===
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xldplavy"; // Netlify-friendly
+  const YM_ID = 104428945; // ← замените на ID счётчика Яндекс.Метрики
+
+  // === Таймер оффера до конца текущего месяца ===
+  (function () {
+    const now = new Date();
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0); // след. месяц, начало
+    const target = new Date(end.getTime() - 1); // конец текущего месяца
+    const dd = document.getElementById("offer-date");
+    const tt = document.getElementById("offer-timer");
+    if (dd) {
+      dd.textContent = target.toLocaleDateString("ru-RU");
+    }
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+    function tick() {
+      const s = Math.max(0, Math.floor((target - new Date()) / 1000));
+      const d = Math.floor(s / 86400),
+        h = Math.floor((s % 86400) / 3600),
+        m = Math.floor((s % 3600) / 60),
+        sec = s % 60;
+      if (tt)
+        tt.textContent =
+          (d > 0 ? d + "д " : "") + pad(h) + ":" + pad(m) + ":" + pad(sec);
+      if (s <= 0) clearInterval(iv);
+    }
+    const iv = setInterval(tick, 1000);
+    tick();
+  })();
+
+  // === Отправка формы + трекинг Метрики + защита от дабл-кликов ===
+  (function () {
+    const form = document.getElementById("leadFormNov");
+    if (!form) return;
+    let lastSend = 0;
+    function enrich(fd) {
+      fd.append("page", document.title);
+      fd.append("url", location.href);
+      fd.append("ts", new Date().toISOString());
+      return fd;
+    }
+    function goal(g) {
+      if (typeof ym === "function" && YM_ID) {
+        ym(YM_ID, "reachGoal", g);
+      }
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lastSend < 10000) {
+        return;
+      } // не чаще, чем раз в 10с
+      lastSend = now;
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Отправляем…";
+      }
+      try {
+        const fd = enrich(new FormData(form));
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error("network");
+        goal("lead_success");
+        if (btn) {
+          btn.textContent = "Отправлено ✅";
+          btn.disabled = false;
+        }
+        form.reset();
+        const m = document.getElementById("modalDone");
+        if (m) {
+          m.style.display = "flex";
+        }
+      } catch (err) {
+        if (btn) {
+          btn.textContent = "Ошибка — попробуйте WhatsApp";
+          btn.disabled = false;
+        }
+        goal("lead_error");
+      }
+    });
+
+    // Цели на клики CTA
+    [
+      [".btn-wa", "click_whatsapp"],
+      [".btn-tg", "click_telegram"],
+      [".btn-call", "click_call"],
+      [".sticky-cta .btn", "scroll_to_form"],
+    ].forEach(([sel, goalName]) => {
+      const el = document.querySelector(sel);
+      if (el) {
+        el.addEventListener("click", () => goal(goalName));
+      }
+    });
+  })();
+</script>
+
+<!-- Яндекс.Метрика -->
+<script type="text/javascript">
+  (function (m, e, t, r, i, k, a) {
+    m[i] =
+      m[i] ||
+      function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+    m[i].l = 1 * new Date();
+    (k = e.createElement(t)),
+      (a = e.getElementsByTagName(t)[0]),
+      (k.async = 1),
+      (k.src = r),
+      a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(104428945, "init", {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+  });
+</script>
+<noscript
+  ><div>
+    <img
+      src="https://mc.yandex.ru/watch/104428945"
+      style="position: absolute; left: -9999px"
+      alt=""
+    /></div
+></noscript>
